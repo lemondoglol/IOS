@@ -28,7 +28,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
             in: .userDomainMask,
             appropriateFor: nil,
             create: true).appendingPathComponent("Untitled.circles")
-        // create file
+        // create file, used to store data (model)
         let circles = CircleContainer()
         let data = circles.json
         if let url = newDocumentURL {
@@ -71,7 +71,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     }
     
     // MARK: Document Presentation
-    
+    // display document contents ?
     func presentDocument(at documentURL: URL) {
         
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)

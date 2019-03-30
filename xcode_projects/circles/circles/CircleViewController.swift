@@ -12,6 +12,7 @@ class CircleViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var documentNameLabel: UILabel!
     
+    // so it can easily access document
     var document: Document?
     var single: UITapGestureRecognizer!
     var double: UITapGestureRecognizer!
@@ -35,6 +36,7 @@ class CircleViewController: UIViewController, UIGestureRecognizerDelegate {
         return (gestureRecognizer == single) && otherGestureRecognizer == double
     }
     
+    // mainly focus on this one. refresh stored data here
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         

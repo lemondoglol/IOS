@@ -8,6 +8,7 @@
 
 import UIKit
 
+// drawing view here
 class CircleView: UIView {
 
     var document: Document?

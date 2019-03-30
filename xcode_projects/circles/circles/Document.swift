@@ -8,6 +8,7 @@
 
 import UIKit
 
+// retrieve contents from CircleContainer
 class Document: UIDocument {
     
     var container: CircleContainer?
