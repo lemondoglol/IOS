@@ -1,12 +1,11 @@
 # What you can learn from this project
 
-<br/>
-## CLLocationManager
-## CLLocation
-## Access Permission
-## decode own type array
+CLLocationManager
+CLLocation
+Access Permission
+decode own type array
 
-<br/>
-<br/>
+<br />
+<br />
 
 ### Access your current postion
