@@ -9,7 +9,7 @@
 import UIKit
 
 
-// RC, used to create new document
+// RC, used to create new document/ file
 class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocumentBrowserViewControllerDelegate {
     
     
@@ -17,7 +17,6 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         delegate = self
         
         allowsDocumentCreation = true
@@ -39,7 +38,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     
     
     // MARK: UIDocumentBrowserViewControllerDelegate
-    
+    // used to create a new document
     func documentBrowser(_ controller: UIDocumentBrowserViewController, didRequestDocumentCreationWithHandler importHandler: @escaping (URL?, UIDocumentBrowserViewController.ImportMode) -> Void) {
         // move to up
         //let newDocumentURL: URL? = nil

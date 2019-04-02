@@ -66,7 +66,7 @@ class CircleViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     
-    @IBAction func dismissDocumentViewController() {
+    @IBAction func dismissDocumentViewController() {	
         dismiss(animated: true) {
             self.document?.close(completionHandler: nil)
         }
