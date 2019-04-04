@@ -8,58 +8,27 @@ import UIKit
 
 
 class PhotoViewController: UIViewController, UIScrollViewDelegate {
+    
+     var imageView = UIImageView()
 
+    // set imageURL
     var imageURL: URL? {
         didSet {
             image = nil
-            
-            print("1")
             let session = URLSession(configuration: .default)
             if let url = imageURL {
                 let task = session.dataTask(with: url) { (data: Data?, resp, error) in
-                    print("2")
                     if let goodData = data {
-                        print("3")
                         DispatchQueue.main.async {
-                            print("4")
                             self.image = UIImage(data: goodData)
-                            print("5")
                         }
-                        print("6")
                     }
                 }
                 task.resume()
-                print("7")
             }
-            print("8")
         }
     }
     
-    
-
-//    var imageURL: URL? {
-//        didSet {
-//            image = nil
-//
-//            print("1")
-//            DispatchQueue.global(qos: .userInitiated).async {
-//                print("2")
-//                if let data = try? Data(contentsOf: self.imageURL!) {
-//                    print("3")
-//                    DispatchQueue.main.async {
-//                        print("4")
-//                        self.image = UIImage(data: data)
-//                        print("5")
-//                    }
-//                    print("6")
-//                }
-//                print("7")
-//            }
-//            print("8")
-//        }
-//    }
-//
-//
     
     var image: UIImage? {
         get {
@@ -70,8 +39,7 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
             imageView.sizeToFit()
         }
     }
-
-    var imageView = UIImageView()
+    
     
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
