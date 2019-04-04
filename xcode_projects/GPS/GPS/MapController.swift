@@ -65,24 +65,27 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             if (status == .authorizedAlways || status == .authorizedWhenInUse) && onOff.isOn {
                 locationManager.startUpdatingLocation()
             } else {
-                // >>>
+                // request before you set those properties
                 locationManager.requestWhenInUseAuthorization()
                 locationManager.allowsBackgroundLocationUpdates = true
+                // still access data, but delay to process if it runs in background
                 locationManager.allowDeferredLocationUpdates(untilTraveled: CLLocationDistanceMax, timeout: 10)
             }
-        }else {
+        } else {
             locationManager.stopUpdatingLocation()
         }
     }
     
+    // focus on the map
     func centerMap(loc: CLLocationCoordinate2D){
         let radius: CLLocationDistance = 300
         let region = MKCoordinateRegion(center: loc, latitudinalMeters: radius, longitudinalMeters: radius)
         mapView.setRegion(region, animated: true)
     }
     
+    // set up annotation
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        //???
+        
         guard annotation is MKPointAnnotation else {return nil}
 
         let identifier = "Annotation"
@@ -97,35 +100,36 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         return annotationView
     }
     
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if (status == .authorizedAlways || status == .authorizedWhenInUse) {
             startTracking()
         }
     }
     
-    //>>>>
     func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
         print("Finished defered")
     }
     
-    //>>>
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("error")
     }
     
     var distance = 0.0
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let latest = locations.last!
         if preViousLocation != nil {
+            // buildin method distance to calculate distance
             let distanceInMeters = preViousLocation?.distance(from: latest) ?? 0
             let distanceInMiles = distanceInMeters * 3.28 / 5280
+            // cal time
             let duration = latest.timestamp.timeIntervalSince(preViousLocation!.timestamp)
             let speed = distanceInMiles * (3600.0 / duration)
             distance += distanceInMiles
             distanceLabel.text = String(format: "%.2f miles", distance)
             speedLabel.text = String(format: ".1f mph", speed)
             let coors = [preViousLocation!.coordinate] + locations.map {$0.coordinate}
+            // add trace line to map
             mapView.addOverlay(MKPolyline(coordinates: coors, count: coors.count))
             
         }
