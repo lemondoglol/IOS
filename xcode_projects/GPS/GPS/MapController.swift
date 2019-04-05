@@ -88,7 +88,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         guard annotation is MKPointAnnotation else {return nil}
 
-        let identifier = "Annotation"
+        let identifier = "Annotation"	
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
 
         if annotationView == nil {
