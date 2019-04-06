@@ -7,7 +7,6 @@
 import UIKit
 
 class ButtonController: UIViewController {
-
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -17,7 +16,7 @@ class ButtonController: UIViewController {
         
         switch ident {
         case "moon":
-            // from online url
+            // from online url or local file
             dest?.imageURL = URL(string: "https://kelehers.me/tmp/moon.jpg")
         case "orion":
             dest?.imageURL = URL(string: "https://kelehers.me/tmp/orion.jpg")

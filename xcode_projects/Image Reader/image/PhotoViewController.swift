@@ -9,34 +9,53 @@ import UIKit
 
 class PhotoViewController: UIViewController, UIScrollViewDelegate {
     
-     var imageView = UIImageView()
-
+    // use imageView to store image
+    // and then use scrollView to store imageView so it can scroll and zoom
+    var imageView = UIImageView()
+    var image: UIImage?
+    
+//    {
+//        get {
+//            return imageView.image
+//        }
+//        set {
+//            imageView.image = newValue
+//            // have to add it, or its going to blank
+//            // Resizes and moves the receiver view so it just encloses its subviews.
+//            imageView.sizeToFit()
+//        }
+//    }
+    
     // set imageURL
     var imageURL: URL? {
         didSet {
-            image = nil
-            let session = URLSession(configuration: .default)
-            if let url = imageURL {
-                let task = session.dataTask(with: url) { (data: Data?, resp, error) in
-                    if let goodData = data {
-                        DispatchQueue.main.async {
-                            self.image = UIImage(data: goodData)
-                        }
-                    }
-                }
-                task.resume()
-            }
+            // new way
+            let data = try? Data(contentsOf: imageURL!)
+            image = UIImage(data: data!)
+            imageView.image = image
+            imageView.sizeToFit()
+            // old way
+//            let session = URLSession(configuration: .default)
+//            if let url = imageURL {
+//                let task = session.dataTask(with: url) { (data: Data?, resp, error) in
+//                    if let goodData = data {
+//                        DispatchQueue.main.async {
+//                            self.image = UIImage(data: goodData)
+//                        }
+//                    }
+//                }
+//                task.resume()
+//            }
         }
     }
     
-    
-    var image: UIImage? {
-        get {
-            return imageView.image
-        }
-        set {
-            imageView.image = newValue
-            imageView.sizeToFit()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        
+        if imageURL == nil {
+            imageURL = Bundle.main.url(forResource: "falconBig", withExtension: "jpg")
         }
     }
     
@@ -44,44 +63,16 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
             scrollView.contentSize = imageView.bounds.size
-
             scrollView.addSubview(imageView)
             
-            scrollView.maximumZoomScale = 4
+            scrollView.maximumZoomScale = 5
             scrollView.minimumZoomScale = 0.5
             scrollView.delegate = self
-            
-            let recognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
-            recognizer.numberOfTapsRequired = 1
-            recognizer.numberOfTouchesRequired = 1
-            scrollView.addGestureRecognizer(recognizer)
-
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-
-        if imageURL == nil {
-            imageURL = Bundle.main.url(forResource: "falconBig", withExtension: "jpg")
-        }
-    }
-    
-    @objc func tap(recog: UITapGestureRecognizer) {
-        if recog.state == .ended  {
-            let location = recog.location(in: scrollView)
-
-            let pt = imageView.convert(location, from: scrollView)
-            let visible = imageView.convert(scrollView.bounds, from: scrollView)
-            scrollView.contentOffset.x += (pt.x - visible.midX) * scrollView.zoomScale
-            scrollView.contentOffset.y += (pt.y - visible.midY) * scrollView.zoomScale
-        }
-    }
-    
+    // for zooming
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
-    
+
 }
