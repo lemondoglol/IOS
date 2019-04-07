@@ -13,6 +13,7 @@
 		848386C02254600C00ADCA73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 848386BF2254600C00ADCA73 /* Assets.xcassets */; };
 		848386C32254600C00ADCA73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848386C12254600C00ADCA73 /* LaunchScreen.storyboard */; };
 		848386CD2254617700ADCA73 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848386CC2254617700ADCA73 /* MapController.swift */; };
+		848386F32259A0BB00ADCA73 /* Epic Sax Guy [Original] [HD].mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 848386F22259A0BA00ADCA73 /* Epic Sax Guy [Original] [HD].mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		848386C22254600C00ADCA73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		848386C42254600C00ADCA73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		848386CC2254617700ADCA73 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		848386F22259A0BA00ADCA73 /* Epic Sax Guy [Original] [HD].mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Epic Sax Guy [Original] [HD].mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				848386BF2254600C00ADCA73 /* Assets.xcassets */,
 				848386C12254600C00ADCA73 /* LaunchScreen.storyboard */,
 				848386C42254600C00ADCA73 /* Info.plist */,
+				848386F22259A0BA00ADCA73 /* Epic Sax Guy [Original] [HD].mp3 */,
 			);
 			path = GPS;
 			sourceTree = "<group>";
@@ -99,6 +102,11 @@
 				TargetAttributes = {
 					848386B42254600900ADCA73 = {
 						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -127,6 +135,7 @@
 			files = (
 				848386C32254600C00ADCA73 /* LaunchScreen.storyboard in Resources */,
 				848386C02254600C00ADCA73 /* Assets.xcassets in Resources */,
+				848386F32259A0BB00ADCA73 /* Epic Sax Guy [Original] [HD].mp3 in Resources */,
 				848386BE2254600900ADCA73 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
