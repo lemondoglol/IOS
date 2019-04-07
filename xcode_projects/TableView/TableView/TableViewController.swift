@@ -15,8 +15,10 @@ class Cell: UITableViewCell {
 }
 
 
-// its a UIViewController
-class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+// Table views manage only the presentation of their data; they do not manage the data itself.
+class TableViewController: UIViewController,
+    //UITableViewDelegate,
+    UITableViewDataSource {
     
     
     var scores: [(String,String,String)] = []
@@ -25,7 +27,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
-            tableView.delegate = self
+          //  tableView.delegate = self
         }
     }
     
